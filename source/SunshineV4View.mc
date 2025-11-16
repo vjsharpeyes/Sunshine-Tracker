@@ -77,18 +77,6 @@ class SunshineV4View extends WatchUi.View {
         // Minutes display
         var minutesText = minutes.format("%d") + " mins";
         dc.drawText(centerX, y + 20, Graphics.FONT_MEDIUM, minutesText, Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Debug: Show last background event time
-        var lastEventTime = Background.getLastTemporalEventTime();
-        if (lastEventTime != null) {
-            var eventInfo = Gregorian.info(lastEventTime, Time.FORMAT_SHORT);
-            var eventText = "Last: " + eventInfo.hour.format("%d") + ":" + eventInfo.min.format("%02d");
-            dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y + 55, Graphics.FONT_XTINY, eventText, Graphics.TEXT_JUSTIFY_CENTER);
-        } else {
-            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y + 55, Graphics.FONT_XTINY, "No BG Event", Graphics.TEXT_JUSTIFY_CENTER);
-        }
     }
 
     // Draw the graph

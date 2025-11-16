@@ -41,7 +41,7 @@ class BackgroundService extends System.ServiceDelegate {
         if (solarIntensity != null && solarIntensity >= 10) {
             // Count as sunshine - we sample every 5 minutes, so add 5 minutes
             var dataManager = new DataManager();
-            dataManager.checkAndResetIfNewDay();
+            // Note: checkAndResetIfNewDay() is already called in DataManager.initialize()
 
             // Add 5 minutes of sunshine
             dataManager.addSunshineMinutes(5);
@@ -85,7 +85,7 @@ class BackgroundService extends System.ServiceDelegate {
         }
 
         // 840 minutes / 28 slots = 30 minutes per slot
-        var slotIndex = minutesSince6AM / 30;
+        var slotIndex = (minutesSince6AM / 30).toNumber();
         return slotIndex;
     }
 

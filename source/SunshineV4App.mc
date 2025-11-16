@@ -16,10 +16,8 @@ class SunshineV4App extends Application.AppBase {
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
-        // Check if we need to reset data for new day
-        if (_dataManager != null) {
-            _dataManager.checkAndResetIfNewDay();
-        }
+        // Note: checkAndResetIfNewDay() is already called in DataManager.initialize()
+        // No need to call it again here
 
         // Register background service if not already registered
         scheduleNextBackgroundCheck();

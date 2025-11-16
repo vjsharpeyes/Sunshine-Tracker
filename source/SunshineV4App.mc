@@ -11,7 +11,7 @@ class SunshineV4App extends Application.AppBase {
 
     function initialize() {
         AppBase.initialize();
-        _dataManager = new DataManager();
+        // Don't create DataManager here - it's not available in background context
     }
 
     // onStart() is called on application start up
@@ -20,7 +20,12 @@ class SunshineV4App extends Application.AppBase {
         // No need to call it again here
 
         // Register background service if not already registered
-        scheduleNextBackgroundCheck();
+        // Only schedule if we're in foreground context
+        try {
+            scheduleNextBackgroundCheck();
+        } catch (ex) {
+            // Ignore if not available in background context
+        }
     }
 
     // onStop() is called when your application is exiting
@@ -29,6 +34,10 @@ class SunshineV4App extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
+        // Create DataManager here - only called in foreground context
+        if (_dataManager == null) {
+            _dataManager = new DataManager();
+        }
         return [ new SunshineV4View() ];
     }
 

@@ -74,28 +74,9 @@ class SunshineV4View extends WatchUi.View {
         // Title
         dc.drawText(centerX, y, Graphics.FONT_SMALL, "Sunshine", Graphics.TEXT_JUSTIFY_CENTER);
 
-        // Minutes with debug info
+        // Minutes display
         var minutesText = minutes.format("%d") + " mins";
         dc.drawText(centerX, y + 20, Graphics.FONT_MEDIUM, minutesText, Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Debug: Show if background is tracking
-        var solarNow = getSolarIntensity();
-        if (solarNow != null && solarNow >= 10) {
-            dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y + 40, Graphics.FONT_XTINY, "Tracking", Graphics.TEXT_JUSTIFY_CENTER);
-        }
-
-        // Debug: Show last background event time
-        var lastEventTime = Background.getLastTemporalEventTime();
-        if (lastEventTime != null) {
-            var eventInfo = Gregorian.info(lastEventTime, Time.FORMAT_SHORT);
-            var eventText = "Last: " + eventInfo.hour.format("%d") + ":" + eventInfo.min.format("%02d");
-            dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y + 55, Graphics.FONT_XTINY, eventText, Graphics.TEXT_JUSTIFY_CENTER);
-        } else {
-            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(centerX, y + 55, Graphics.FONT_XTINY, "No BG Event", Graphics.TEXT_JUSTIFY_CENTER);
-        }
     }
 
     // Draw the graph

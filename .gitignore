@@ -1,0 +1,30 @@
+# Build outputs
+bin/
+*.prg
+*.iq
+gen/
+external-mir/
+internal-mir/
+mir/
+*.mir
+*.mbc
+bin*.json
+bin*.xml
+
+# Developer key (sensitive)
+developer_key
+developer_key.pem
+*.der
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Garmin SDK cache
+.connectiq/

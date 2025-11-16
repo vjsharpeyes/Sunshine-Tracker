@@ -259,11 +259,9 @@ class SunshineV4View extends WatchUi.View {
 
     // Ensure background service is registered every time widget updates
     private function ensureBackgroundRegistered() as Void {
-        var lastEventTime = Background.getLastTemporalEventTime();
         var now = Time.now();
 
-        // If no event is registered, or it's been a while, re-register
-        // We schedule 5 minutes from now to comply with the minimum interval
+        // Schedule background event 5 minutes from now to comply with the minimum interval
         var nextTime = now.add(new Time.Duration(300)); // 300 seconds = 5 minutes
 
         try {
